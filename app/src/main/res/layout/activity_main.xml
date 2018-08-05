@@ -4,15 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@drawable/gradient_anim_list"
+    tools:context=".MainActivity"
+    android:id="@+id/container">
 
-    <TextView
+    <io.ghyeok.stickyswitch.widget.StickySwitch
+        android:id="@+id/sticky_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:ss_animationDuration="600"
+        app:ss_iconPadding="30dp"
+        app:ss_iconSize="28dp"
+        app:ss_leftIcon="@drawable/ic_launcher_foreground"
+        app:ss_leftText="Male"
+        app:ss_rightIcon="@drawable/ic_launcher_foreground"
+        app:ss_rightText="Female"
+        app:ss_selectedTextSize="14sp"
+        app:ss_sliderBackgroundColor="@color/primary"
+        app:ss_switchColor="@color/accent"
+        app:ss_textColor="#fff"
+        app:ss_textSize="12sp"
+        app:ss_animationType="curved"/>
 
 </android.support.constraint.ConstraintLayout>
