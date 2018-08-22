@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/dialog_layout">
+    android:id="@+id/dialog_layout"
+    android:orientation="vertical">
 
+    <EditText
+        android:id="@+id/waiter_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:inputType="number"
+        android:hint="Enter Waiter ID"/>
 
+    <EditText
+        android:id="@+id/waiter_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:hint="Enter Waiter Name"/>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
