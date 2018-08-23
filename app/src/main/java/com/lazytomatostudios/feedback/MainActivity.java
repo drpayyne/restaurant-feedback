@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.lazytomatostudios.feedback.db.Database;
+
 import org.jetbrains.annotations.NotNull;
 
 import io.ghyeok.stickyswitch.widget.StickySwitch;
@@ -21,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     StickySwitch stickySwitch;
     Button button;
     Intent intent;
+
+    Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

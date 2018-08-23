@@ -3,14 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/dialog_create_layout"
+    android:id="@+id/dialog_delete_layout"
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/waiter_name"
+        android:id="@+id/waiter_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:hint="Enter Waiter Name"/>
+        android:inputType="number"
+        android:hint="Enter Waiter ID"/>
 
 </LinearLayout>
