@@ -20,10 +20,9 @@ import es.dmoral.toasty.Toasty;
 
 public class AdminActivity extends AppCompatActivity implements View.OnClickListener {
 
-    String TAG = "Manick";
+    String TAG = "Manick", waiter_name;
     Button button_create, button_read, button_update, button_delete, button_csv;
     View layout;
-    String waiter_name;
     int waiter_id;
     Database database;
     Waiter waiter;
