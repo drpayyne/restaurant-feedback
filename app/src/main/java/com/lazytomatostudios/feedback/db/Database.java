@@ -10,9 +10,9 @@ import com.lazytomatostudios.feedback.db.entity.Waiter;
 @android.arch.persistence.room.Database(entities = {Waiter.class}, version = 2, exportSchema = false)
 public abstract class Database extends RoomDatabase {
 
-    private static Database INSTANCE;
-
     public abstract WaiterDao waiterDao();
+
+    private static Database INSTANCE;
 
     public static Database getDatabase(Context context) {
         if(INSTANCE == null) {

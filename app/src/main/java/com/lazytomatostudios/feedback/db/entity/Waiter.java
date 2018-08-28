@@ -12,7 +12,6 @@ public class Waiter {
     private int id;
     private String name;
 
-
     @NonNull
     public int getId() {
         return id;

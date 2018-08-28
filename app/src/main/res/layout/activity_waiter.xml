@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WaiterActivity"
+    android:layout_marginTop="50dp">
+
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/waiter_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:ms_multiline="false"
+        app:ms_hint="Select Waiter"
+        app:ms_enableFloatingLabel="true"
+        app:ms_floatingLabelText="Waiter"
+        app:ms_baseColor="@color/accent" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edittext_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@id/waiter_spinner"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelText="Table number"
+        android:hint="@string/enter_table_number"
+        android:layout_margin="8dp"/>
+    
+    <Button
+        android:id="@+id/button_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set date"
+        app:layout_constraintTop_toBottomOf="@id/edittext_table"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/textview_date"/>
+
+    <TextView
+        android:id="@+id/textview_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/button_date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edittext_table"/>
+
+</android.support.constraint.ConstraintLayout>

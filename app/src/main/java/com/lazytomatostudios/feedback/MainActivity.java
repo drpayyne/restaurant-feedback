@@ -39,11 +39,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(stickySwitch.getDirection() == StickySwitch.Direction.LEFT) {
                     Log.d(TAG, "LEFT");
+                    intent = new Intent(MainActivity.this, WaiterActivity.class);
                 } else {
                     Log.d(TAG, "RIGHT");
                     intent = new Intent(MainActivity.this, AdminActivity.class);
-                    startActivity(intent);
                 }
+                startActivity(intent);
             }
         });
 

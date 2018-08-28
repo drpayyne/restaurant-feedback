@@ -25,8 +25,9 @@
         android:id="@+id/waiter_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="20dp"
-        android:hint="Enter Waiter Name"/>
+        android:hint="@string/enter_waiter_name"/>
 
 </LinearLayout>
