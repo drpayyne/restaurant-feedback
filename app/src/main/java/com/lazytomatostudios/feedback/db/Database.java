@@ -16,7 +16,7 @@ public abstract class Database extends RoomDatabase {
 
     public abstract WaiterDao waiterDao();
     public abstract UserDao userDao();
-    public abstract FeedbackDao FeedbackDao();
+    public abstract FeedbackDao feedbackDao();
 
     private static Database INSTANCE;
 

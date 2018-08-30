@@ -61,6 +61,7 @@ public class FeedbackActivity extends AppCompatActivity{
                                     final EditText email = layout.findViewById(R.id.user_mail);
                                     final EditText dob = layout.findViewById(R.id.user_dob);
                                     final EditText doa = layout.findViewById(R.id.user_doa);
+                                    phone.setText(input);
                                     //Building dialog
                                     builder = new AlertDialog.Builder(FeedbackActivity.this);
                                     builder.setView(layout);
