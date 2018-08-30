@@ -29,7 +29,6 @@ public class FeedbackActivity extends AppCompatActivity{
     LayoutInflater inflater;
     AlertDialog.Builder builder;
     AlertDialog alertDialog;
-    Thread thread;
     View layout;
     EditText editText;
     @Override
