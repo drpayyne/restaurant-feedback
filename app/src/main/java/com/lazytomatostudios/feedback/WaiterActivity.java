@@ -8,12 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-<<<<<<< HEAD
-=======
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
->>>>>>> amad
 
 import com.lazytomatostudios.feedback.db.Database;
 import com.lazytomatostudios.feedback.db.entity.Waiter;
