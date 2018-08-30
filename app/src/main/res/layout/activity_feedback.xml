@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FeedbackActivity">
-
+    tools:context=".FeedbackActivity" >
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/edittext_table"
@@ -19,7 +18,7 @@
         app:layout_constraintBottom_toTopOf="@id/button2"
         app:met_floatingLabelText="Phone number"
         android:hint="@string/enter_phone_number"
-        android:layout_margin="8dp"/>
+        android:layout_margin="8dp" />
 
     <Button
         android:id="@+id/button2"
@@ -29,6 +28,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edittext_table"
- />
+        app:layout_constraintTop_toBottomOf="@id/edittext_table" />
+
 </android.support.constraint.ConstraintLayout>

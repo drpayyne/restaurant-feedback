@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RatingActivity">
+    tools:context=".RatingActivity" >
 
     <TextView
         android:text="FOOD"
@@ -15,9 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/r1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <RatingBar
         android:id="@+id/r1"
@@ -26,9 +25,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/q1"
-        app:layout_constraintBottom_toTopOf="@id/q2"
+        app:layout_constraintBottom_toTopOf="@id/q2" />
 
-        />
     <TextView
         android:text="SERVICE"
         android:textSize="35sp"
@@ -38,9 +36,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/r1"
-        app:layout_constraintBottom_toTopOf="@id/r2"
+        app:layout_constraintBottom_toTopOf="@id/r2" />
 
-        />
     <RatingBar
         android:id="@+id/r2"
         android:layout_width="wrap_content"
@@ -48,9 +45,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/q2"
-        app:layout_constraintBottom_toTopOf="@id/q3"
+        app:layout_constraintBottom_toTopOf="@id/q3" />
 
-        />
     <TextView
         android:text="AMBIENCE"
         android:textSize="35sp"
@@ -60,9 +56,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/r2"
-        app:layout_constraintBottom_toTopOf="@id/r3"
-
-        />
+        app:layout_constraintBottom_toTopOf="@id/r3" />
 
     <RatingBar
         android:id="@+id/r3"
@@ -71,9 +65,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/q3"
-        app:layout_constraintBottom_toTopOf="@id/r4"
+        app:layout_constraintBottom_toTopOf="@id/r4" />
 
-        />
     <TextView
         android:text="VALUE FOR MONEY"
         android:textSize="35sp"
@@ -83,9 +76,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/r3"
-        app:layout_constraintBottom_toTopOf="@id/r4"
+        app:layout_constraintBottom_toTopOf="@id/r4" />
 
-        />
     <RatingBar
         android:id="@+id/r4"
         android:layout_width="wrap_content"
@@ -93,9 +85,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/q4"
-        app:layout_constraintBottom_toTopOf="@id/q5"
+        app:layout_constraintBottom_toTopOf="@id/q5" />
 
-        />
     <TextView
         android:text="CLEANLINESS"
         android:textSize="35sp"
@@ -105,9 +96,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/r4"
-        app:layout_constraintBottom_toTopOf="@id/r5"
+        app:layout_constraintBottom_toTopOf="@id/r5" />
 
-        />
     <RatingBar
         android:id="@+id/r5"
         android:layout_width="wrap_content"
@@ -115,6 +105,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/q5" />
+
     <Button
         android:id="@+id/button_submit"
         android:layout_width="wrap_content"
@@ -123,4 +114,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/r5" />
+
 </android.support.constraint.ConstraintLayout>

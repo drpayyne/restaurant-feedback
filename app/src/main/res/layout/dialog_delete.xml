@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/dialog_delete_layout"
-    android:orientation="vertical">
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@color/accent">
+        android:background="@color/accent" >
 
         <ImageView
             android:layout_height="match_parent"
@@ -17,7 +18,7 @@
             android:tint="@color/primary"
             android:scaleType="centerInside"
             android:layout_centerInParent="true"
-            android:src="@drawable/ic_admin"/>
+            android:src="@drawable/ic_admin" />
 
     </RelativeLayout>
 
@@ -28,6 +29,6 @@
         android:layout_marginHorizontal="8dp"
         android:layout_marginTop="20dp"
         android:inputType="number"
-        android:hint="Enter Waiter ID"/>
+        android:hint="Enter Waiter ID" />
 
 </LinearLayout>

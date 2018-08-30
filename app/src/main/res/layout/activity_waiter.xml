@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WaiterActivity"
-    android:layout_marginTop="50dp">
+    android:layout_marginTop="50dp" >
 
     <fr.ganfra.materialspinner.MaterialSpinner
         android:id="@+id/waiter_spinner"
@@ -27,7 +27,7 @@
         app:met_floatingLabel="highlight"
         app:met_floatingLabelText="Table number"
         android:hint="@string/enter_table_number"
-        android:layout_margin="8dp"/>
+        android:layout_margin="8dp" />
     
     <Button
         android:id="@+id/button_date"
@@ -36,8 +36,7 @@
         android:text="Set date"
         app:layout_constraintTop_toBottomOf="@id/edittext_table"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-       />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/textview_date"
@@ -47,7 +46,7 @@
         android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_date"/>
+        app:layout_constraintTop_toBottomOf="@id/button_date" />
 
     <Button
         android:id="@+id/button_start"
@@ -57,5 +56,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_date"/>
+        app:layout_constraintTop_toBottomOf="@id/textview_date" />
+
 </android.support.constraint.ConstraintLayout>
