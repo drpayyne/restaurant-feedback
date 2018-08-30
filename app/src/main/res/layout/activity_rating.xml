@@ -114,9 +114,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/q5"
-
-        />
+        app:layout_constraintTop_toBottomOf="@id/q5" />
     <Button
         android:id="@+id/button_submit"
         android:layout_width="wrap_content"
@@ -124,6 +122,5 @@
         android:text="SUBMIT"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/r5"
-       />
+        app:layout_constraintTop_toBottomOf="@id/r5" />
 </android.support.constraint.ConstraintLayout>

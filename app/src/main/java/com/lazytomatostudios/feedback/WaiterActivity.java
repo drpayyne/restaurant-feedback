@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lazytomatostudios.feedback.db.Database;
 import com.lazytomatostudios.feedback.db.entity.Waiter;
@@ -19,6 +20,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import java.util.Calendar;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
 import fr.ganfra.materialspinner.MaterialSpinner;
 
 public class WaiterActivity extends AppCompatActivity {
@@ -57,11 +59,15 @@ public class WaiterActivity extends AppCompatActivity {
        button_feedback.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-        //       Intent intent = new Intent(this, FeedbackActivity.class);
-      //         intent.putExtra("waiter", waiterSpinner.getSelectedItem().toString());
-    //           intent.putExtra("table_no",tabletext.getText());
-  //             intent.putExtra("date",date_view.getText());
-//               startActivity(intent);
+               if(waiterSpinner.getSelectedItem() == null || tabletext.getText().toString() == "" || date_view.getText().toString() == "") {
+                   Toasty.error(getApplicationContext(), "Please enter all fields!", Toast.LENGTH_SHORT, true).show();
+               } else {
+                   Intent intent = new Intent(WaiterActivity.this, FeedbackActivity.class);
+                   intent.putExtra("waiter", waiterSpinner.getSelectedItem().toString());
+                   intent.putExtra("table_no",tabletext.getText().toString());
+                   intent.putExtra("date",date_view.getText().toString());
+                   startActivity(intent);
+               }
            }
        });
 

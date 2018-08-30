@@ -53,8 +53,9 @@
         android:id="@+id/button_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="92dp"
         android:text="start"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="119dp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview_date"/>
 </android.support.constraint.ConstraintLayout>

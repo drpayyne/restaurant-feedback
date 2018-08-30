@@ -1,6 +1,7 @@
 package com.lazytomatostudios.feedback;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -91,9 +92,14 @@ public class FeedbackActivity extends AppCompatActivity{
                                                         @Override
                                                         public void run() {
                                                             Toasty.success(getApplicationContext(), "Created new customer", Toast.LENGTH_SHORT, true).show();
+                                                            Intent intent = new Intent(FeedbackActivity.this, RatingActivity.class);
+                                                            intent.putExtra("waiter", getIntent().getExtras().getString("waiter"));
+                                                            intent.putExtra("table_no",getIntent().getExtras().getString("table_no"));
+                                                            intent.putExtra("date",getIntent().getExtras().getString("date"));
+                                                            intent.putExtra("number", user_phone);
+                                                            startActivity(intent);
                                                         }
                                                     });
-
                                                 }
                                             }).start();
                                             Log.d(TAG, "Dismissing dialog");
@@ -109,10 +115,13 @@ public class FeedbackActivity extends AppCompatActivity{
                                     alertDialog = builder.create();
                                     alertDialog.show();
                                 } else {
-
-
-                                    Bundle bundle = new Bundle();
                                     Log.d("Steve",user.getPhone_number() + user.getName() + user.getMail() + user.getDoa() + user.getDob());
+                                    Intent intent = new Intent(FeedbackActivity.this, RatingActivity.class);
+                                    intent.putExtra("waiter", getIntent().getExtras().getString("waiter"));
+                                    intent.putExtra("table_no",getIntent().getExtras().getString("table_no"));
+                                    intent.putExtra("date",getIntent().getExtras().getString("date"));
+                                    intent.putExtra("number", user.getPhone_number());
+                                    startActivity(intent);
                                 }
                             }
                         });
