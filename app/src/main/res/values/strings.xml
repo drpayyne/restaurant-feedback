@@ -2,4 +2,7 @@
     <string name="app_name">Feedback</string>
     <string name="enter_waiter_name">Enter Waiter Name</string>
     <string name="enter_table_number">Enter table number</string>
+
+    <string name="enter_phone_number">Enter phone number</string>
+    <string name="feedback">Feedback</string>
 </resources>

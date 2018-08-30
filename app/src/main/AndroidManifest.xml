@@ -23,7 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WaiterActivity"></activity>
+        <activity android:name=".WaiterActivity" />
+        <activity android:name=".FeedbackActivity"></activity>
     </application>
 
 </manifest>

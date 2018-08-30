@@ -1,10 +1,13 @@
 package com.lazytomatostudios.feedback;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 
 import com.lazytomatostudios.feedback.db.Database;
 import com.lazytomatostudios.feedback.db.entity.Waiter;
@@ -44,6 +47,15 @@ public class WaiterActivity extends AppCompatActivity /*implements DatePickerDia
                 initWaiterAdapter();
             }
         }).start();
+
+        Button button = findViewById(R.id.button_start);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WaiterActivity.this, FeedbackActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //datePickerDialog = new DatePickerDialog(this, WaiterActivity.this, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
     }
