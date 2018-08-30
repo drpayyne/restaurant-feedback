@@ -36,17 +36,21 @@
         android:text="Set date"
         app:layout_constraintTop_toBottomOf="@id/edittext_table"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/textview_date"/>
+        app:layout_constraintEnd_toEndOf="parent"
+       />
 
     <TextView
         android:id="@+id/textview_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/button_date"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edittext_table"/>
+        app:layout_constraintTop_toBottomOf="@id/button_date"/>
 
     <Button
+<<<<<<< HEAD
         android:id="@+id/button_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,4 +59,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="119dp" />
 
+=======
+
+>>>>>>> amad
 </android.support.constraint.ConstraintLayout>

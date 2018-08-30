@@ -24,7 +24,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".WaiterActivity" />
+<<<<<<< HEAD
         <activity android:name=".FeedbackActivity"></activity>
+=======
+        <activity android:name=".RatingActivity"></activity>
+>>>>>>> amad
     </application>
 
 </manifest>
