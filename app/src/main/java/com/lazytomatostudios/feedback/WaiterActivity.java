@@ -56,7 +56,7 @@ public class WaiterActivity extends AppCompatActivity {
             }
         });
 
-       button_feedback = (Button) findViewById(R.id.button_next);
+       button_feedback = (Button) findViewById(R.id.button_start);
        button_feedback.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -83,18 +83,6 @@ public class WaiterActivity extends AppCompatActivity {
             }
         }).start();
 
-<<<<<<< HEAD
-        Button button = findViewById(R.id.button_start);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(WaiterActivity.this, FeedbackActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //datePickerDialog = new DatePickerDialog(this, WaiterActivity.this, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-=======
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -103,7 +91,6 @@ public class WaiterActivity extends AppCompatActivity {
             }
         }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 
->>>>>>> amad
     }
 
     private void initWaiterAdapter() {
