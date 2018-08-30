@@ -57,11 +57,11 @@ public class WaiterActivity extends AppCompatActivity {
        button_feedback.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               Intent intent = new Intent(this, FeedbackActivity.class);
-               intent.putExtra("waiter", waiterSpinner.getSelectedItem().toString());
-               intent.putExtra("table_no",tabletext.getText());
-               intent.putExtra("date",date_view.getText());
-               startActivity(intent);
+        //       Intent intent = new Intent(this, FeedbackActivity.class);
+      //         intent.putExtra("waiter", waiterSpinner.getSelectedItem().toString());
+    //           intent.putExtra("table_no",tabletext.getText());
+  //             intent.putExtra("date",date_view.getText());
+//               startActivity(intent);
            }
        });
 
