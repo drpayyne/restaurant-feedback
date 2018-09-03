@@ -1,11 +1,14 @@
 package com.lazytomatostudios.feedback;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -51,6 +54,7 @@ public class WaiterActivity extends AppCompatActivity {
         button_open_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dismissKeyboard(WaiterActivity.this);
                 datePickerDialog.show();
             }
         });
@@ -101,5 +105,12 @@ public class WaiterActivity extends AppCompatActivity {
         waiterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         waiterSpinner = findViewById(R.id.waiter_spinner);
         waiterSpinner.setAdapter(waiterAdapter);
+    }
+
+    public void dismissKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (null != activity.getCurrentFocus())
+            imm.hideSoftInputFromWindow(activity.getCurrentFocus()
+                    .getApplicationWindowToken(), 0);
     }
 }

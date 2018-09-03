@@ -2,10 +2,10 @@ package com.lazytomatostudios.feedback;
 
 import android.Manifest;
 import android.content.DialogInterface;
-import android.content.pm.PackageManager;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,14 +27,10 @@ import com.lazytomatostudios.feedback.db.entity.Feedback;
 import com.lazytomatostudios.feedback.db.entity.Waiter;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -66,12 +62,17 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         Dexter.withActivity(AdminActivity.this).withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE).withListener(new PermissionListener() {
             @Override
             public void onPermissionGranted(PermissionGrantedResponse response) {
-                Toasty.success(AdminActivity.this, "Permission granted!", Toast.LENGTH_SHORT, true).show();
+                //success
             }
 
             @Override
             public void onPermissionDenied(PermissionDeniedResponse response) {
                 Toasty.error(AdminActivity.this, "You must grant access to storage!", Toast.LENGTH_SHORT, true).show();
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                Uri uri = Uri.fromParts("package", getPackageName(), null);
+                intent.setData(uri);
+                startActivity(intent);
             }
 
             @Override
@@ -202,25 +203,33 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void run() {
                         feedbackList = database.feedbackDao().readAll();
-                        parseFeedback(feedbackList);
+                        parseFeedback();
                     }
                 }).start();
                 break;
         }
     }
 
-    public void parseFeedback(List<Feedback> feedbackList) {
+    public void parseFeedback() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm");
         Date date = new Date();
+        Log.d(TAG, Environment.getExternalStorageDirectory().toString());
         File folder = new File(Environment.getExternalStorageDirectory() + "/Feedback");
-        if(!folder.exists())
-            folder.mkdir();
+        if(!folder.exists()) {
+            Log.d(TAG, "Creating folder");
+            boolean folderCreated = folder.mkdir();
+            Log.d(TAG, "Folder status : " + String.valueOf(folderCreated));
+        }
         String fileName = folder.toString() + "/" + dateFormat.format(date) + ".csv";
+        Log.d(TAG, fileName);
         File file = new File(fileName);
         CsvWriter csvWriter = new CsvWriter();
-        try (CsvAppender csvAppender = csvWriter.append(file, StandardCharsets.UTF_8)) {
+        CsvAppender csvAppender;
+        try {
+            csvAppender = csvWriter.append(new FileWriter(file));
             csvAppender.appendLine("index", "phone", "rating1", "rating2", "rating3", "rating4", "rating5", "comments", "date", "waiter", "table");
             for (int i = 0; i < feedbackList.size(); i++) {
+                Log.d(TAG, "Exporting feedback : " + i);
                 csvAppender.appendLine(
                         String.valueOf(feedbackList.get(i).getIndex()),
                         feedbackList.get(i).getPhone(),
@@ -235,9 +244,23 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                         feedbackList.get(i).getTable()
                         );
             }
+            csvAppender.close();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toasty.success(getApplicationContext(), "Exported to CSV. Count : " + feedbackList.size(), Toast.LENGTH_SHORT, true).show();
+                }
+            });
         } catch (IOException e) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toasty.error(getApplicationContext(), "Unable to export! Try again." + feedbackList.size(), Toast.LENGTH_SHORT, true).show();
+                }
+            });
             e.printStackTrace();
         }
+        Log.d(TAG, file.getAbsolutePath());
         Log.d(TAG, "Number of feedbacks : " + feedbackList.size());
         for(int i = 0; i <feedbackList.size(); i++) {
             Log.d(TAG, String.valueOf(feedbackList.get(i).getIndex()));

@@ -29,6 +29,8 @@ public class RatingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating);
+        commentEditText = findViewById(R.id.comments_edit_text);
+        commentEditText.clearFocus();
 
         database = Database.getDatabase(this);
 
@@ -42,7 +44,6 @@ public class RatingActivity extends AppCompatActivity {
         ratingBar3 = findViewById(R.id.r3);
         ratingBar4 = findViewById(R.id.r4);
         ratingBar5 = findViewById(R.id.r5);
-        commentEditText = findViewById(R.id.comments_edit_text);
 
         submitButton = findViewById(R.id.button_submit);
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +54,7 @@ public class RatingActivity extends AppCompatActivity {
             q3_rating= ratingBar3.getRating();
             q4_rating= ratingBar4.getRating();
             q5_rating= ratingBar5.getRating();
+            comments = commentEditText.getText().toString();
 
             new Thread(new Runnable() {
                 @Override
@@ -67,6 +69,7 @@ public class RatingActivity extends AppCompatActivity {
                     feedback.setQ3_rating(q3_rating);
                     feedback.setQ4_rating(q4_rating);
                     feedback.setQ5_rating(q5_rating);
+                    feedback.setComments(comments);
                     database.feedbackDao().create(feedback);
                     runOnUiThread(new Runnable() {
                         @Override

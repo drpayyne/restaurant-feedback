@@ -3,7 +3,6 @@
     package="com.lazytomatostudios.feedback">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -19,16 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AdminActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".AdminActivity" />
         <activity android:name=".WaiterActivity" />
-        <activity android:name=".FeedbackActivity"></activity>
-        <activity android:name=".RatingActivity"></activity>
+        <activity android:name=".FeedbackActivity"/>
+        <activity
+            android:name=".RatingActivity"
+            android:windowSoftInputMode="adjustResize"/>
     </application>
 
 </manifest>

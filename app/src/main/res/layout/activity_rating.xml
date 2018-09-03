@@ -125,7 +125,7 @@
                 app:met_floatingLabel="highlight"
                 app:met_floatingLabelText="Comments"
                 android:hint="Type out comments here"
-                android:layout_margin="8dp"/>
+                android:layout_margin="8dp" />
 
             <Button
                 android:id="@+id/button_submit"
