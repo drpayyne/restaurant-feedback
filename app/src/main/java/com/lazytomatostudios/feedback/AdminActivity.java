@@ -309,6 +309,12 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("new_feedbacks", 0);
         editor.apply();
-        newFeedbackView.setText(getString(R.string.test_resource) + String.valueOf(sharedPreferences.getInt("new_feedbacks", 0)));
+        final String string = getString(R.string.test_resource) + String.valueOf(sharedPreferences.getInt("new_feedbacks", 0));
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                newFeedbackView.setText(string);
+            }
+        });
     }
 }

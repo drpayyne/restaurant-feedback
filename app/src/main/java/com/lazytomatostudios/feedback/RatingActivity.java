@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.lazytomatostudios.feedback.db.Database;
 import com.lazytomatostudios.feedback.db.entity.Feedback;
+import com.lazytomatostudios.feedback.helper.FullscreenBugWorkaround;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import es.dmoral.toasty.Toasty;
@@ -37,6 +38,7 @@ public class RatingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating);
+        FullscreenBugWorkaround.assistActivity(this);
 
         database = Database.getDatabase(this);
         sharedPreferences = getApplicationContext().getSharedPreferences("feedback", 0);
