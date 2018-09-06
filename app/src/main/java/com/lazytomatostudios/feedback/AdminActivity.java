@@ -82,10 +82,6 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         Log.d(TAG, sharedPreferences.getString("admin2", "admin2"));
         Log.d(TAG, sharedPreferences.getString("admin3", "admin3"));
 
-        newFeedbackView = findViewById(R.id.new_feedbacks_text);
-        String string = "New feedbacks : " + String.valueOf(sharedPreferences.getInt("new_feedbacks", 0));
-        newFeedbackView.setText(string);
-
         Dexter.withActivity(AdminActivity.this).withPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.SEND_SMS).withListener(new MultiplePermissionsListener() {
             @Override
             public void onPermissionsChecked(MultiplePermissionsReport report) {
@@ -111,6 +107,9 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         button_csv = findViewById(R.id.button_csv);
         button_sms = findViewById(R.id.button_sms);
         button_customer = findViewById(R.id.button_customer);
+
+        String string = "Export Customers (" + String.valueOf(sharedPreferences.getInt("new_feedbacks", 0)) + " new)";
+        button_csv.setText(string);
 
         button_create.setOnClickListener(this);
         button_read.setOnClickListener(this);
@@ -353,11 +352,11 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         editor = sharedPreferences.edit();
         editor.putInt("new_feedbacks", 0);
         editor.apply();
-        final String string = "New feedbacks : " + String.valueOf(sharedPreferences.getInt("new_feedbacks", 0));
+        final String string = "Export Customers (" + String.valueOf(sharedPreferences.getInt("new_feedbacks", 0)) + " new)";
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                newFeedbackView.setText(string);
+                button_csv.setText(string);
             }
         });
     }
