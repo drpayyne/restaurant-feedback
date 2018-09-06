@@ -26,7 +26,7 @@
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".WaiterActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".FeedbackActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />

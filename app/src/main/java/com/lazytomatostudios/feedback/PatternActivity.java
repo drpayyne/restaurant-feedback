@@ -2,12 +2,14 @@ package com.lazytomatostudios.feedback;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.andrognito.patternlockview.PatternLockView;
 import com.andrognito.patternlockview.listener.PatternLockViewListener;
+import com.andrognito.patternlockview.utils.PatternLockUtils;
 
 import java.util.List;
 
@@ -23,9 +25,12 @@ public class PatternActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pattern);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         sharedPreferences = getApplicationContext().getSharedPreferences("feedback", 0);
         editor = sharedPreferences.edit();
-        editor.putString("admin_pattern", "(Row = 0, Col = 0)(Row = 0, Col = 1)(Row = 0, Col = 2)(Row = 1, Col = 1)(Row = 2, Col = 1)");
+        editor.putString("admin_pattern", "01247");
         editor.apply();
 
         patternLockView = findViewById(R.id.pattern_lock_view);
@@ -37,25 +42,43 @@ public class PatternActivity extends AppCompatActivity {
 
             @Override
             public void onProgress(List<PatternLockView.Dot> progressPattern) {
-                Log.d(TAG, progressPattern.toArray().toString());
+                Log.d(TAG, PatternLockUtils.patternToString(patternLockView, progressPattern));
             }
 
             @Override
             public void onComplete(List<PatternLockView.Dot> pattern) {
-                Log.d(TAG, pattern.toArray().toString());
-                String myPattern = "";
-                for (int i = 0; i < pattern.size(); i++) {
-                    myPattern = myPattern.concat(pattern.get(i).toString());
-                }
+                String myPattern = PatternLockUtils.patternToString(patternLockView, pattern);
                 Log.d(TAG, myPattern);
-                Log.d(TAG, sharedPreferences.getString("admin_pattern", null));
+                Log.d(TAG, sharedPreferences.getString("admin_pattern", ""));
                 if(sharedPreferences.getString("admin_pattern", "").equals(myPattern)) {
                     Log.d(TAG, "MATCHED");
+                    patternLockView.setViewMode(PatternLockView.PatternViewMode.CORRECT);
                     Intent intent = new Intent(PatternActivity.this, AdminActivity.class);
+                    patternLockView.removePatternLockListener(this);
                     startActivity(intent);
                 } else {
                     Log.d(TAG, "MISMATCHED");
-                    patternLockView.clearPattern();
+                    patternLockView.setViewMode(PatternLockView.PatternViewMode.WRONG);
+                    Thread thread = new Thread() {
+                        @Override
+                        public void run() {
+                            // Block this thread for 2 seconds.
+                            try {
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                                e.getLocalizedMessage();
+                            }
+
+                            // After sleep finished blocking, create a Runnable to run on the UI Thread.
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    patternLockView.clearPattern();
+                                }
+                            });
+                        }
+                    };
+                    thread.start();
                 }
             }
 

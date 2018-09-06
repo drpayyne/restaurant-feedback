@@ -47,7 +47,7 @@ public class WaiterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_waiter);
-        FullscreenBugWorkaround.assistActivity(this);
+        //FullscreenBugWorkaround.assistActivity(this);
         date_view = findViewById(R.id.textview_date);
 
         date = "Date : " + String.valueOf(Calendar.getInstance().get(Calendar.DAY_OF_MONTH)) + "/" + String.valueOf(Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + String.valueOf(Calendar.getInstance().get(Calendar.YEAR));

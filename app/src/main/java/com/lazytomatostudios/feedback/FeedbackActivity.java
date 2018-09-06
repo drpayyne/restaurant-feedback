@@ -14,12 +14,8 @@ import android.widget.Toast;
 
 import com.lazytomatostudios.feedback.db.Database;
 import com.lazytomatostudios.feedback.db.entity.User;
-import com.lazytomatostudios.feedback.db.entity.Waiter;
-import com.lazytomatostudios.feedback.helper.FullscreenBugWorkaround;
 
 import es.dmoral.toasty.Toasty;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 
 public class FeedbackActivity extends AppCompatActivity{
 

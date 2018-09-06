@@ -73,6 +73,9 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         database = Database.getDatabase(this);
         sharedPreferences = getApplicationContext().getSharedPreferences("feedback", 0);
         Log.d(TAG, sharedPreferences.getString("admin1", "admin1"));
@@ -80,7 +83,8 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         Log.d(TAG, sharedPreferences.getString("admin3", "admin3"));
 
         newFeedbackView = findViewById(R.id.new_feedbacks_text);
-        newFeedbackView.setText(getString(R.string.test_resource) + String.valueOf(sharedPreferences.getInt("new_feedbacks", 0)));
+        String string = "New feedbacks : " + String.valueOf(sharedPreferences.getInt("new_feedbacks", 0));
+        newFeedbackView.setText(string);
 
         Dexter.withActivity(AdminActivity.this).withPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.SEND_SMS).withListener(new MultiplePermissionsListener() {
             @Override
@@ -349,7 +353,7 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         editor = sharedPreferences.edit();
         editor.putInt("new_feedbacks", 0);
         editor.apply();
-        final String string = getString(R.string.test_resource) + String.valueOf(sharedPreferences.getInt("new_feedbacks", 0));
+        final String string = "New feedbacks : " + String.valueOf(sharedPreferences.getInt("new_feedbacks", 0));
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
