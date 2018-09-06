@@ -2,6 +2,7 @@ package com.lazytomatostudios.feedback;
 
 import android.Manifest;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -19,6 +20,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -108,8 +110,13 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         button_sms = findViewById(R.id.button_sms);
         button_customer = findViewById(R.id.button_customer);
 
-        String string = "Export Customers (" + String.valueOf(sharedPreferences.getInt("new_feedbacks", 0)) + " new)";
-        button_csv.setText(string);
+        if(sharedPreferences.getInt("new_feedbacks", 0) > 0) {
+            String string = "Export feedbacks (" + String.valueOf(sharedPreferences.getInt("new_feedbacks", 0)) + " new)";
+            button_csv.setText(string);
+        } else {
+            String string = "Export feedbacks";
+            button_csv.setText(string);
+        }
 
         button_create.setOnClickListener(this);
         button_read.setOnClickListener(this);
@@ -231,12 +238,14 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                         }).start();
                         Log.d(TAG, "Dismissing dialog");
                         alertDialog.dismiss();
+                        dismissKeyboard(AdminActivity.this);
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         alertDialog.dismiss();
+                        dismissKeyboard(AdminActivity.this);
                     }
                 });
                 alertDialog = builder.create();
@@ -269,12 +278,14 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                         editor.commit();
                         Log.d(TAG, "Dismissing dialog");
                         alertDialog.dismiss();
+                        dismissKeyboard(AdminActivity.this);
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         alertDialog.dismiss();
+                        dismissKeyboard(AdminActivity.this);
                     }
                 });
                 alertDialog = builder.create();
@@ -352,10 +363,10 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         editor = sharedPreferences.edit();
         editor.putInt("new_feedbacks", 0);
         editor.apply();
-        final String string = "Export Customers (" + String.valueOf(sharedPreferences.getInt("new_feedbacks", 0)) + " new)";
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                String string = "Export feedbacks";
                 button_csv.setText(string);
             }
         });
@@ -379,5 +390,12 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         Intent intent = new Intent(AdminActivity.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+    }
+
+    public void dismissKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (null != activity.getCurrentFocus())
+            imm.hideSoftInputFromWindow(activity.getCurrentFocus()
+                    .getApplicationWindowToken(), 0);
     }
 }
