@@ -22,7 +22,7 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 
 public class FeedbackActivity extends AppCompatActivity{
 
-    String TAG="Steve", user_name,user_phone,user_mail,user_dob,user_doa,input;
+    String TAG = "Steve", user_name, user_phone, user_mail, user_dob, user_doa, input;
     Database database;
     User user;
     Button button;
@@ -31,6 +31,7 @@ public class FeedbackActivity extends AppCompatActivity{
     AlertDialog alertDialog;
     View layout;
     EditText editText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,42 +69,51 @@ public class FeedbackActivity extends AppCompatActivity{
                                     builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            Log.d(TAG, name.getText().toString());
-                                            user_name = name.getText().toString();
-                                            user_phone = phone.getText().toString();
-                                            user_mail = email.getText().toString();
-                                            user_dob = dob.getText().toString();
-                                            user_doa = doa.getText().toString();
-                                            Log.d(TAG, "Creating thread for database query");
-                                            new Thread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    Log.d(TAG, "Initiating database query");
-                                                    user = new User();
-                                                    user.setName(user_name);
-                                                    user.setPhone_number(user_phone);
-                                                    user.setDoa(user_doa);
-                                                    user.setDob(user_dob);
-                                                    user.setMail(user_mail);
+                                            user_name = name.getText().toString().trim();
+                                            user_phone = phone.getText().toString().trim();
+                                            user_mail = email.getText().toString().trim();
+                                            user_dob = dob.getText().toString().trim();
+                                            user_doa = doa.getText().toString().trim();
+                                            Log.d(TAG, "User details : ");
+                                            Log.d(TAG, String.valueOf(user_name == null));
+                                            Log.d(TAG, user_phone + "~");
+                                            Log.d(TAG, user_mail + "~");
+                                            Log.d(TAG, user_dob + "~");
+                                            Log.d(TAG, user_doa + "~");
+                                            if (user_name == "" || user_phone == "" || user_mail == "" || user_dob == "") {
+                                                Toasty.error(getApplicationContext(), "Enter all details!", Toast.LENGTH_SHORT, true).show();
+                                            } else {
+                                                Log.d(TAG, "Creating thread for database query");
+                                                new Thread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Log.d(TAG, "Initiating database query");
+                                                        user = new User();
+                                                        user.setName(user_name);
+                                                        user.setPhone_number(user_phone);
+                                                        user.setDoa(user_doa);
+                                                        user.setDob(user_dob);
+                                                        user.setMail(user_mail);
 
-                                                    database.userDao().create(user);
-                                                    Log.d(TAG, "Database query completed");
-                                                    runOnUiThread(new Runnable() {
-                                                        @Override
-                                                        public void run() {
-                                                            Toasty.success(getApplicationContext(), "Created new customer", Toast.LENGTH_SHORT, true).show();
-                                                            Intent intent = new Intent(FeedbackActivity.this, RatingActivity.class);
-                                                            intent.putExtra("waiter", getIntent().getExtras().getString("waiter"));
-                                                            intent.putExtra("table_no",getIntent().getExtras().getString("table_no"));
-                                                            intent.putExtra("date",getIntent().getExtras().getString("date"));
-                                                            intent.putExtra("number", user_phone);
-                                                            startActivity(intent);
-                                                        }
-                                                    });
-                                                }
-                                            }).start();
-                                            Log.d(TAG, "Dismissing dialog");
-                                            alertDialog.dismiss();
+                                                        database.userDao().create(user);
+                                                        Log.d(TAG, "Database query completed");
+                                                        runOnUiThread(new Runnable() {
+                                                            @Override
+                                                            public void run() {
+                                                                Toasty.success(getApplicationContext(), "Created new customer", Toast.LENGTH_SHORT, true).show();
+                                                                Intent intent = new Intent(FeedbackActivity.this, RatingActivity.class);
+                                                                intent.putExtra("waiter", getIntent().getExtras().getString("waiter"));
+                                                                intent.putExtra("table_no",getIntent().getExtras().getString("table_no"));
+                                                                intent.putExtra("date",getIntent().getExtras().getString("date"));
+                                                                intent.putExtra("number", user_phone);
+                                                                startActivity(intent);
+                                                            }
+                                                        });
+                                                    }
+                                                }).start();
+                                                Log.d(TAG, "Dismissing dialog");
+                                                alertDialog.dismiss();
+                                            }
                                         }
                                     });
                                     builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -130,4 +140,5 @@ public class FeedbackActivity extends AppCompatActivity{
             }
         });
     }
+
 }

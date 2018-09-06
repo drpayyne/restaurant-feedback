@@ -5,4 +5,17 @@
 
     <string name="enter_phone_number">Enter phone number</string>
     <string name="feedback">Feedback</string>
+    <string name="test_resource">New feedbacks : </string>
+    <string-array name="frequency_of_visit">
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Quarterly</item>
+    </string-array>
+    <string-array name="expected_wait_time">
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+        <item>15 minutes</item>
+        <item>20 minutes</item>
+        <item>25 minutes</item>
+    </string-array>
 </resources>

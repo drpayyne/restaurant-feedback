@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,13 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".RatingActivity" >
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="28dp">
 
             <TextView
                 android:text="FOOD"
@@ -114,23 +111,53 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/q5" />
 
+            <fr.ganfra.materialspinner.MaterialSpinner
+                android:id="@+id/frequency_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/r5"
+                android:layout_margin="8dp"
+                app:ms_multiline="false"
+                app:ms_hint="Choose frequency of your visit"
+                app:ms_enableFloatingLabel="true"
+                app:ms_floatingLabelText="Frequency of Visit"
+                app:ms_baseColor="@color/accent" />
+
+            <fr.ganfra.materialspinner.MaterialSpinner
+                android:id="@+id/wait_time_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/frequency_spinner"
+                android:layout_margin="8dp"
+                app:ms_multiline="false"
+                app:ms_hint="Choose expected wait time for service"
+                app:ms_enableFloatingLabel="true"
+                app:ms_floatingLabelText="Expected wait time"
+                app:ms_baseColor="@color/accent" />
+
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/comments_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/r5"
+                app:layout_constraintTop_toBottomOf="@id/wait_time_spinner"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/button_submit"
                 app:met_floatingLabel="highlight"
                 app:met_floatingLabelText="Comments"
-                android:hint="Type out comments here"
+                android:hint="Type out comments here (optional)"
+                android:lines="3"
+                android:maxLines="3"
+                android:gravity="bottom"
                 android:layout_margin="8dp" />
 
             <Button
                 android:id="@+id/button_submit"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:text="SUBMIT"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -139,6 +166,4 @@
 
         </android.support.constraint.ConstraintLayout>
 
-    </ScrollView>
-
-</android.support.constraint.ConstraintLayout>
+</ScrollView>

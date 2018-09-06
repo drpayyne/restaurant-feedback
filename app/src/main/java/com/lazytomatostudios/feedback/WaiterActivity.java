@@ -28,7 +28,7 @@ import fr.ganfra.materialspinner.MaterialSpinner;
 
 public class WaiterActivity extends AppCompatActivity {
 
-    String TAG = "Manick";
+    String TAG = "Manick", date;
 
     MaterialEditText tabletext;
     Database database;
@@ -48,7 +48,10 @@ public class WaiterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_waiter);
         date_view = findViewById(R.id.textview_date);
 
+        date = "Date : " + String.valueOf(Calendar.getInstance().get(Calendar.DAY_OF_MONTH)) + "/" + String.valueOf(Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+        date_view.setText(date);
         tabletext = findViewById(R.id.edittext_table);
+
 
         button_open_date = (Button) findViewById(R.id.button_date);
         button_open_date.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +97,8 @@ public class WaiterActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 Log.d("amrutha", String.valueOf(year) + " " + String.valueOf(monthOfYear+1) + " " + String.valueOf(dayOfMonth));
-                date_view.setText(String.valueOf(year) + " " + String.valueOf(monthOfYear+1) + " " + String.valueOf(dayOfMonth));
+                date = "Date : " + String.valueOf(dayOfMonth) + "/" + String.valueOf(monthOfYear + 1) + "/" + String.valueOf(year);
+                date_view.setText(date);
             }
         }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 
