@@ -12,7 +12,7 @@ public class Feedback {
     @PrimaryKey(autoGenerate = true)
     private int index;
     private float q1_rating, q2_rating, q3_rating, q4_rating, q5_rating;
-    private String phone, date, waiter, table, comments, frequency, wait_time;
+    private String phone, date, waiter, table, comments, frequency, wait_time, customer;
 
     @NonNull
     public int getIndex() {
@@ -117,5 +117,13 @@ public class Feedback {
 
     public void setWait_time(String wait_time) {
         this.wait_time = wait_time;
+    }
+
+    public String getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(String customer) {
+        this.customer = customer;
     }
 }

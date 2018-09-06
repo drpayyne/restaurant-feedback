@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WaiterActivity"
-    android:layout_marginTop="50dp" >
+    android:paddingTop="50dp"
+    android:background="@drawable/gradient_yoda">
 
     <fr.ganfra.materialspinner.MaterialSpinner
         android:id="@+id/waiter_spinner"
@@ -16,7 +17,8 @@
         app:ms_hint="Select Waiter"
         app:ms_enableFloatingLabel="true"
         app:ms_floatingLabelText="Waiter"
-        app:ms_baseColor="@color/accent" />
+        app:ms_baseColor="@color/white"
+        app:ms_hintColor="#000"/>
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/edittext_table"
@@ -45,7 +47,8 @@
         android:text="Change date"
         app:layout_constraintTop_toBottomOf="@id/textview_date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/accent"/>
 
     <Button
         android:id="@+id/button_start"
@@ -55,6 +58,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_date" />
+        app:layout_constraintTop_toBottomOf="@id/textview_date"
+        android:textColor="@color/accent"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -22,7 +23,7 @@ import fr.ganfra.materialspinner.MaterialSpinner;
 
 public class RatingActivity extends AppCompatActivity {
 
-    String TAanG="Steve", phone, table, date, waiter, comments, frequency, waitTime;
+    String TAanG="Steve", phone, table, date, waiter, comments, frequency, waitTime, customer;
     float q1_rating, q2_rating, q3_rating, q4_rating, q5_rating;
     RatingBar ratingBar1, ratingBar2, ratingBar3, ratingBar4, ratingBar5;
     MaterialEditText commentEditText;
@@ -47,6 +48,7 @@ public class RatingActivity extends AppCompatActivity {
         waiter = getIntent().getExtras().getString("waiter");
         table = getIntent().getExtras().getString("table_no");
         date = getIntent().getExtras().getString("date");
+        customer = getIntent().getExtras().getString("customer");
 
         ratingBar1 = findViewById(R.id.r1);
         ratingBar2 = findViewById(R.id.r2);
@@ -99,10 +101,32 @@ public class RatingActivity extends AppCompatActivity {
                             feedback.setComments(comments);
                             feedback.setFrequency(frequency);
                             feedback.setWait_time(waitTime);
+                            feedback.setCustomer(customer);
                             database.feedbackDao().create(feedback);
                             editor = sharedPreferences.edit();
                             editor.putInt("new_feedbacks", sharedPreferences.getInt("new_feedbacks", 0) + 1);
                             editor.apply();
+                            if(q1_rating < 3 || q2_rating < 3 || q3_rating < 3 || q4_rating < 3 || q5_rating < 3 ) {
+                                try {
+                                    String num1, num2, num3;
+                                    num1 = sharedPreferences.getString("admin1", "");
+                                    num2 = sharedPreferences.getString("admin2", "");
+                                    num3 = sharedPreferences.getString("admin3", "");
+                                    SmsManager smsManager = SmsManager.getDefault();
+                                    String message = "Feedback : " + customer + " " + phone + " TL:" + table + " F:" + q1_rating + " S:" + q2_rating + " A:" + q3_rating + " V:" + q4_rating + " C:" + q5_rating;
+                                    if(!num1.equals("")) {
+                                        smsManager.sendTextMessage(num1, null, message, null, null);
+                                    }
+                                    if(!num2.equals("")) {
+                                        smsManager.sendTextMessage(num2, null, message, null, null);
+                                    }
+                                    if(!num3.equals("")) {
+                                        smsManager.sendTextMessage(num3, null, message, null, null);
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {

@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -52,7 +53,7 @@ import es.dmoral.toasty.Toasty;
 public class AdminActivity extends AppCompatActivity implements View.OnClickListener {
 
     String TAG = "Manick", waiter_name;
-    Button button_create, button_read, button_delete, button_csv;
+    Button button_create, button_read, button_delete, button_csv, button_sms, button_customer;
     View layout;
     int waiter_id;
     Database database;
@@ -65,6 +66,7 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
     TextView textView, newFeedbackView;
     String waiters = "";
     SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,9 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
 
         database = Database.getDatabase(this);
         sharedPreferences = getApplicationContext().getSharedPreferences("feedback", 0);
+        Log.d(TAG, sharedPreferences.getString("admin1", "admin1"));
+        Log.d(TAG, sharedPreferences.getString("admin2", "admin2"));
+        Log.d(TAG, sharedPreferences.getString("admin3", "admin3"));
 
         newFeedbackView = findViewById(R.id.new_feedbacks_text);
         newFeedbackView.setText(getString(R.string.test_resource) + String.valueOf(sharedPreferences.getInt("new_feedbacks", 0)));
@@ -100,11 +105,15 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         button_read = findViewById(R.id.button_read);
         button_delete = findViewById(R.id.button_delete);
         button_csv = findViewById(R.id.button_csv);
+        button_sms = findViewById(R.id.button_sms);
+        button_customer = findViewById(R.id.button_customer);
 
         button_create.setOnClickListener(this);
         button_read.setOnClickListener(this);
         button_delete.setOnClickListener(this);
         button_csv.setOnClickListener(this);
+        button_sms.setOnClickListener(this);
+        button_customer.setOnClickListener(this);
     }
 
     @Override
@@ -187,14 +196,6 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                     }
                 }).start();
                 break;
-                /*try {
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage("+919500132964", null, "hi", null, null);
-                    smsManager.sendTextMessage("+919500132964", null, "hi", null, null);
-                    smsManager.sendTextMessage("+919500132964", null, "hi", null, null);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }*/
             case R.id.button_delete:
                 inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
                 layout = inflater.inflate(R.layout.dialog_delete, null);
@@ -238,6 +239,44 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                 alertDialog = builder.create();
                 alertDialog.show();
                 break;
+            case R.id.button_sms:
+                inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+                layout = inflater.inflate(R.layout.dialog_edit_numbers, null);
+                final EditText num1 = layout.findViewById(R.id.admin1_edittext);
+                final EditText num2 = layout.findViewById(R.id.admin2_edittext);
+                final EditText num3 = layout.findViewById(R.id.admin3_edittext);
+
+                num1.setText(sharedPreferences.getString("admin1", ""));
+                num2.setText(sharedPreferences.getString("admin2", ""));
+                num3.setText(sharedPreferences.getString("admin3", ""));
+
+                //Building dialog
+                builder = new AlertDialog.Builder(AdminActivity.this);
+                builder.setView(layout);
+                builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String admin1 = num1.getText().toString();
+                        String admin2 = num2.getText().toString();
+                        String admin3 = num3.getText().toString();
+                        editor = sharedPreferences.edit();
+                        editor.putString("admin1", admin1);
+                        editor.putString("admin2", admin2);
+                        editor.putString("admin3", admin3);
+                        editor.commit();
+                        Log.d(TAG, "Dismissing dialog");
+                        alertDialog.dismiss();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        alertDialog.dismiss();
+                    }
+                });
+                alertDialog = builder.create();
+                alertDialog.show();
+                break;
             case R.id.button_csv:
                 new Thread(new Runnable() {
                     @Override
@@ -246,6 +285,8 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                         parseFeedback();
                     }
                 }).start();
+                break;
+            case R.id.button_customer:
                 break;
         }
     }
@@ -305,8 +346,7 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         for(int i = 0; i <feedbackList.size(); i++) {
             Log.d(TAG, String.valueOf(feedbackList.get(i).getIndex()));
         }
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("feedback", 0);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor = sharedPreferences.edit();
         editor.putInt("new_feedbacks", 0);
         editor.apply();
         final String string = getString(R.string.test_resource) + String.valueOf(sharedPreferences.getInt("new_feedbacks", 0));
@@ -316,5 +356,25 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                 newFeedbackView.setText(string);
             }
         });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            Log.d("CDA", "onKeyDown Called");
+            onBackPressed();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Intent intent = new Intent(AdminActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

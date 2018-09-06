@@ -107,6 +107,7 @@ public class FeedbackActivity extends AppCompatActivity{
                                                                 intent.putExtra("table_no",getIntent().getExtras().getString("table_no"));
                                                                 intent.putExtra("date",getIntent().getExtras().getString("date"));
                                                                 intent.putExtra("number", user_phone);
+                                                                intent.putExtra("customer", user_name);
                                                                 startActivity(intent);
                                                             }
                                                         });
