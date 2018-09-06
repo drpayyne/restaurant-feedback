@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                     intent = new Intent(MainActivity.this, WaiterActivity.class);
                 } else {
                     Log.d(TAG, "RIGHT");
-                    intent = new Intent(MainActivity.this, AdminActivity.class);
+                    intent = new Intent(MainActivity.this, PatternActivity.class);
                 }
                 startActivity(intent);
             }
