@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/dialog_create_user_layout"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -15,10 +14,9 @@
         <ImageView
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:tint="@color/primary"
-            android:scaleType="centerInside"
+            android:tint="#000"
             android:layout_centerInParent="true"
-            android:src="@drawable/ic_waiter" />
+            android:src="@drawable/ic_person_add_black_200dp" />
 
     </RelativeLayout>
 
