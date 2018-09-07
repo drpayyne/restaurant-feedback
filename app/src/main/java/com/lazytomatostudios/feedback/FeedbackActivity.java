@@ -82,7 +82,7 @@ public class FeedbackActivity extends AppCompatActivity{
                                                 new DatePickerDialog(FeedbackActivity.this, new DatePickerDialog.OnDateSetListener() {
                                                     @Override
                                                     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                                                        String text = i2 + "/" + i1 + "/" + i;
+                                                        String text = i2 + "/" + (i1 + 1) + "/" + i;
                                                         dob.setText(text);
                                                     }
                                                 }, 1990, 1, 1).show();
@@ -95,7 +95,7 @@ public class FeedbackActivity extends AppCompatActivity{
                                                 new DatePickerDialog(FeedbackActivity.this, new DatePickerDialog.OnDateSetListener() {
                                                     @Override
                                                     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                                                        String text = i2 + "/" + i1 + "/" + i;
+                                                        String text = i2 + "/" + (i1 + 1) + "/" + i;
                                                         doa.setText(text);
                                                     }
                                                 }, 1990, 1, 1).show();
