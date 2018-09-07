@@ -15,18 +15,38 @@
             android:layout_width="match_parent"
             android:tint="#000"
             android:layout_centerInParent="true"
-            android:src="@drawable/ic_waiter" />
+            android:src="@drawable/ic_perm_phone_msg_black_24dp" />
 
     </RelativeLayout>
 
     <EditText
-        android:id="@+id/waiter_name"
+        android:id="@+id/admin1_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="20dp"
-        android:hint="@string/enter_waiter_name"
+        android:hint="Enter number 1"
+        android:imeOptions="actionNext"/>
+
+    <EditText
+        android:id="@+id/admin2_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="20dp"
+        android:hint="Enter number 2"
+        android:imeOptions="actionNext"/>
+
+    <EditText
+        android:id="@+id/admin3_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="20dp"
+        android:hint="Enter number 3"
         android:imeOptions="actionDone"/>
 
 </LinearLayout>

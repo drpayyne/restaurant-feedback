@@ -5,9 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    android:background="@drawable/gradient_lush"
     tools:context=".MainActivity"
     android:id="@+id/container" >
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/sticky_switch"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <io.ghyeok.stickyswitch.widget.StickySwitch
         android:id="@+id/sticky_switch"
@@ -15,7 +26,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo"
         app:layout_constraintBottom_toTopOf="@id/button"
         app:ss_animationDuration="500"
         app:ss_iconPadding="28dp"
@@ -24,18 +35,19 @@
         app:ss_leftText="Waiter"
         app:ss_rightIcon="@drawable/ic_admin"
         app:ss_rightText="Admin"
-        app:ss_selectedTextSize="14sp"
-        app:ss_sliderBackgroundColor="@color/primary"
-        app:ss_switchColor="@color/accent"
-        app:ss_textColor="#fff"
-        app:ss_textSize="12sp"
-        app:ss_animationType="curved" />
+        app:ss_selectedTextSize="24sp"
+        app:ss_sliderBackgroundColor="@color/primary_dark"
+        app:ss_switchColor="@color/primary"
+        app:ss_textColor="@color/primary_text"
+        app:ss_textSize="18sp"
+        app:ss_animationType="curved"
+        android:elevation="8dp"/>
 
-    <Button
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enter"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/ic_navigate_next_black_24dp"
         android:textColor="@color/primary"
         app:layout_constraintTop_toBottomOf="@id/sticky_switch"
         app:layout_constraintBottom_toBottomOf="parent"

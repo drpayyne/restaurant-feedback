@@ -1,12 +1,19 @@
 package com.lazytomatostudios.feedback;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.TransitionDrawable;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -22,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     TransitionDrawable transition;
     ConstraintLayout layout;
     StickySwitch stickySwitch;
-    Button button;
+    FloatingActionButton button;
     Intent intent;
 
     @Override
@@ -30,8 +37,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        layout = findViewById(R.id.container);
-        transition = (TransitionDrawable) layout.getBackground();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,14 +49,14 @@ public class MainActivity extends AppCompatActivity {
                     intent = new Intent(MainActivity.this, WaiterActivity.class);
                 } else {
                     Log.d(TAG, "RIGHT");
-                    intent = new Intent(MainActivity.this, AdminActivity.class);
+                    intent = new Intent(MainActivity.this, PatternActivity.class);
                 }
                 startActivity(intent);
             }
         });
 
         stickySwitch = findViewById(R.id.sticky_switch);
-        stickySwitch.setOnSelectedChangeListener(new StickySwitch.OnSelectedChangeListener() {
+        /*stickySwitch.setOnSelectedChangeListener(new StickySwitch.OnSelectedChangeListener() {
             @Override
             public void onSelectedChange(@NotNull StickySwitch.Direction direction, @NotNull String text) {
                 Log.d(TAG, "Now Selected : " + direction.name() + ", Current Text : " + text);
@@ -57,6 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 else
                     transition.reverseTransition(500);
             }
-        });
+        });*/
     }
 }

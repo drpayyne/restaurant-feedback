@@ -1,60 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/admin_container"
-    tools:context=".AdminActivity" >
+    tools:context=".AdminActivity"
+    android:orientation="vertical"
+    android:background="@drawable/gradient_lush"
+    android:gravity="center_vertical">
 
     <Button
         android:id="@+id/button_create"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/button_read"
-        android:text="Add Waiter" />
+        android:layout_height="60dp"
+        android:background="@drawable/rounded_rectangle"
+        android:layout_margin="4dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Add Waiter"
+        android:elevation="5dp"
+        android:shadowColor="@color/primary_text"/>
 
     <Button
         android:id="@+id/button_read"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/button_create"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/button_update"
-        android:text="View Waiters" />
-
-    <Button
-        android:id="@+id/button_update"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/button_read"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/button_delete"
-        android:text="Update Waiter" />
+        android:layout_height="60dp"
+        android:background="@drawable/rounded_rectangle"
+        android:layout_margin="4dp"
+        android:layout_gravity="center_horizontal"
+        android:text="View Waiters"
+        android:elevation="5dp"
+        android:shadowColor="@color/primary_text"/>
 
     <Button
         android:id="@+id/button_delete"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/button_update"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/button_csv"
-        android:text="Delete Waiter" />
+        android:layout_height="60dp"
+        android:layout_margin="4dp"
+        android:background="@drawable/rounded_rectangle"
+        android:layout_gravity="center_horizontal"
+        android:text="Delete Waiter"
+        android:elevation="5dp"
+        android:shadowColor="@color/primary_text"/>
+
+    <Button
+        android:id="@+id/button_sms"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:background="@drawable/rounded_rectangle"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Edit SMS Numbers"
+        android:elevation="5dp"
+        android:shadowColor="@color/primary_text"/>
+
+    <Button
+        android:id="@+id/button_customer"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_margin="4dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/rounded_rectangle"
+        android:text="Export Customers" />
 
     <Button
         android:id="@+id/button_csv"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/button_delete"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Export to CSV" />
+        android:layout_height="60dp"
+        android:layout_margin="4dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/rounded_rectangle"
+        android:text="Export Feedbacks" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
