@@ -38,6 +38,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.karumi.dexter.listener.single.PermissionListener;
 import com.lazytomatostudios.feedback.db.Database;
 import com.lazytomatostudios.feedback.db.entity.Feedback;
+import com.lazytomatostudios.feedback.db.entity.User;
 import com.lazytomatostudios.feedback.db.entity.Waiter;
 
 import java.io.File;
@@ -62,6 +63,7 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
     Waiter waiter;
     List<Waiter> waiterList;
     List<Feedback> feedbackList;
+    List<User> userList;
     LayoutInflater inflater;
     AlertDialog.Builder builder;
     AlertDialog alertDialog;
@@ -116,6 +118,14 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         } else {
             String string = "Export feedbacks";
             button_csv.setText(string);
+        }
+
+        if(sharedPreferences.getInt("new_customers", 0) > 0) {
+            String string = "Export customers (" + String.valueOf(sharedPreferences.getInt("new_customers", 0)) + " new)";
+            button_customer.setText(string);
+        } else {
+            String string = "Export customers";
+            button_customer.setText(string);
         }
 
         button_create.setOnClickListener(this);
@@ -301,6 +311,13 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                 }).start();
                 break;
             case R.id.button_customer:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        userList = database.userDao().readAll();
+                        parseCustomer();
+                    }
+                }).start();
                 break;
         }
     }
@@ -309,7 +326,7 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm");
         Date date = new Date();
         Log.d(TAG, Environment.getExternalStorageDirectory().toString());
-        File folder = new File(Environment.getExternalStorageDirectory() + "/Feedback");
+        File folder = new File(Environment.getExternalStorageDirectory() + "/Feedback/Feedbacks");
         if(!folder.exists()) {
             Log.d(TAG, "Creating folder");
             boolean folderCreated = folder.mkdir();
@@ -322,7 +339,7 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         CsvAppender csvAppender;
         try {
             csvAppender = csvWriter.append(new FileWriter(file));
-            csvAppender.appendLine("index", "phone", "rating1", "rating2", "rating3", "rating4", "rating5", "comments", "date", "waiter", "table");
+            csvAppender.appendLine("index", "phone", "food", "service", "ambience", "value", "cleanliness", "frequency", "wait_time", "comments", "date", "waiter", "table");
             for (int i = 0; i < feedbackList.size(); i++) {
                 Log.d(TAG, "Exporting feedback : " + i);
                 csvAppender.appendLine(
@@ -333,6 +350,8 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                         String.valueOf(feedbackList.get(i).getQ3_rating()),
                         String.valueOf(feedbackList.get(i).getQ4_rating()),
                         String.valueOf(feedbackList.get(i).getQ5_rating()),
+                        feedbackList.get(i).getFrequency(),
+                        feedbackList.get(i).getWait_time(),
                         feedbackList.get(i).getComments(),
                         feedbackList.get(i).getDate(),
                         feedbackList.get(i).getWaiter(),
@@ -368,6 +387,67 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
             public void run() {
                 String string = "Export feedbacks";
                 button_csv.setText(string);
+            }
+        });
+    }
+
+    public void parseCustomer() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm");
+        Date date = new Date();
+        Log.d(TAG, Environment.getExternalStorageDirectory().toString());
+        File folder = new File(Environment.getExternalStorageDirectory() + "/Feedback/Customers");
+        if(!folder.exists()) {
+            Log.d(TAG, "Creating folder");
+            boolean folderCreated = folder.mkdir();
+            Log.d(TAG, "Folder status : " + String.valueOf(folderCreated));
+        }
+        String fileName = folder.toString() + "/" + dateFormat.format(date) + ".csv";
+        Log.d(TAG, fileName);
+        File file = new File(fileName);
+        CsvWriter csvWriter = new CsvWriter();
+        CsvAppender csvAppender;
+        try {
+            csvAppender = csvWriter.append(new FileWriter(file));
+            csvAppender.appendLine("phone", "name", "mail", "dob", "doa");
+            for (int i = 0; i < userList.size(); i++) {
+                Log.d(TAG, "Exporting users : " + i);
+                csvAppender.appendLine(
+                        userList.get(i).getPhone_number(),
+                        userList.get(i).getName(),
+                        userList.get(i).getMail(),
+                        userList.get(i).getDob(),
+                        userList.get(i).getDoa()
+                );
+            }
+            csvAppender.close();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toasty.success(getApplicationContext(), "Exported to CSV. Count : " + userList.size(), Toast.LENGTH_SHORT, true).show();
+                }
+            });
+        } catch (IOException e) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toasty.error(getApplicationContext(), "Unable to export! Try again." + userList.size(), Toast.LENGTH_SHORT, true).show();
+                }
+            });
+            e.printStackTrace();
+        }
+        Log.d(TAG, file.getAbsolutePath());
+        Log.d(TAG, "Number of users : " + userList.size());
+        for(int i = 0; i < userList.size(); i++) {
+            Log.d(TAG, String.valueOf(userList.get(i).getPhone_number()));
+        }
+        editor = sharedPreferences.edit();
+        editor.putInt("new_customers", 0);
+        editor.apply();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                String string = "Export customers";
+                button_customer.setText(string);
             }
         });
     }

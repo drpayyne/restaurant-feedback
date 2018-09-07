@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WaiterActivity"
-    android:paddingTop="50dp"
-    android:background="@drawable/gradient_yoda">
+    android:orientation="vertical"
+    android:background="@drawable/gradient_lush">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter waiter details"
+        android:paddingTop="100dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:gravity="center_horizontal"/>
 
     <fr.ganfra.materialspinner.MaterialSpinner
         android:id="@+id/waiter_spinner"
@@ -17,48 +28,86 @@
         app:ms_hint="Select Waiter"
         app:ms_enableFloatingLabel="true"
         app:ms_floatingLabelText="Waiter"
-        app:ms_baseColor="@color/white"
+        app:ms_baseColor="@color/primary"
         app:ms_hintColor="#000"/>
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/edittext_table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@id/waiter_spinner"
         app:met_floatingLabel="highlight"
         app:met_floatingLabelText="Table number"
         android:hint="@string/enter_table_number"
         android:layout_margin="8dp" />
 
-    <TextView
-        android:id="@+id/textview_date"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edittext_table" />
+        android:orientation="horizontal"
+        android:gravity="center">
 
-    <Button
-        android:id="@+id/button_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Change date"
-        app:layout_constraintTop_toBottomOf="@id/textview_date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/accent"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
 
-    <Button
+            <Button
+                android:id="@+id/button_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change date"
+                android:textColor="@color/accent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/textview_date"/>
+
+            <Button
+                android:id="@+id/button_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change time"
+                android:textColor="@color/accent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/textview_time"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textview_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:text="7/9/2018"
+                app:layout_constraintStart_toEndOf="@id/button_date"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/textview_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:text="14:08"
+                app:layout_constraintStart_toEndOf="@id/button_time"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/button_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="start"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_date"
-        android:textColor="@color/accent"/>
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/ic_navigate_next_black_24dp"
+        android:layout_gravity="center"/>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

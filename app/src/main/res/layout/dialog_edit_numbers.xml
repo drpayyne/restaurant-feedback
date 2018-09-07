@@ -28,7 +28,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="20dp"
-        android:hint="Enter number 1" />
+        android:hint="Enter number 1"
+        android:imeOptions="actionNext"/>
 
     <EditText
         android:id="@+id/admin2_edittext"
@@ -37,7 +38,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="20dp"
-        android:hint="Enter number 2" />
+        android:hint="Enter number 2"
+        android:imeOptions="actionNext"/>
 
     <EditText
         android:id="@+id/admin3_edittext"
@@ -46,6 +48,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="20dp"
-        android:hint="Enter number 3" />
+        android:hint="Enter number 3"
+        android:imeOptions="actionDone"/>
 
 </LinearLayout>

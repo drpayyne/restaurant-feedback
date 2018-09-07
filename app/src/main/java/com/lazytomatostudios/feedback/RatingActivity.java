@@ -23,7 +23,7 @@ import fr.ganfra.materialspinner.MaterialSpinner;
 
 public class RatingActivity extends AppCompatActivity {
 
-    String TAanG="Steve", phone, table, date, waiter, comments, frequency, waitTime, customer;
+    String TAanG="Steve", phone, table, date, waiter, comments, frequency, waitTime, customer, time;
     float q1_rating, q2_rating, q3_rating, q4_rating, q5_rating;
     RatingBar ratingBar1, ratingBar2, ratingBar3, ratingBar4, ratingBar5;
     MaterialEditText commentEditText;
@@ -39,7 +39,9 @@ public class RatingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating);
-        //FullscreenBugWorkaround.assistActivity(this);
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         database = Database.getDatabase(this);
         sharedPreferences = getApplicationContext().getSharedPreferences("feedback", 0);
@@ -48,6 +50,7 @@ public class RatingActivity extends AppCompatActivity {
         waiter = getIntent().getExtras().getString("waiter");
         table = getIntent().getExtras().getString("table_no");
         date = getIntent().getExtras().getString("date");
+        time = getIntent().getExtras().getString("time");
         customer = getIntent().getExtras().getString("customer");
 
         ratingBar1 = findViewById(R.id.r1);
@@ -78,18 +81,18 @@ public class RatingActivity extends AppCompatActivity {
                 q3_rating = ratingBar3.getRating();
                 q4_rating = ratingBar4.getRating();
                 q5_rating = ratingBar5.getRating();
-                comments = commentEditText.getText().toString();
-                //frequency = frequencySpinner.getSelectedItem().toString();
-                //waitTime = waitTimeSpinner.getSelectedItem().toString();
 
                 if (q1_rating == 0.0 || q2_rating == 0.0 || q3_rating == 0.0 || q4_rating == 0.0 || q5_rating == 0.0 || frequencySpinner.getSelectedItem() == null || waitTimeSpinner.getSelectedItem() == null) {
                     Toasty.error(getApplicationContext(), "Please enter all details", Toast.LENGTH_SHORT, true).show();
                 } else {
+                    comments = commentEditText.getText().toString();
+                    frequency = frequencySpinner.getSelectedItem().toString();
+                    waitTime = waitTimeSpinner.getSelectedItem().toString();
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
                             feedback = new Feedback();
-                            feedback.setDate(date);
+                            feedback.setDate(date + " " + time);
                             feedback.setPhone(phone);
                             feedback.setTable(table);
                             feedback.setWaiter(waiter);

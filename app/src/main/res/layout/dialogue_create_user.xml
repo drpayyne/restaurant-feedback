@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dialog_create_user_layout"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,46 +22,101 @@
 
     </RelativeLayout>
 
-    <EditText
+    <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="20dp"
-        android:hint="Enter User Name" />
+        android:layout_marginHorizontal="8dp"
+        android:hint="Enter your name"
+        android:inputType="text"
+        android:drawableLeft="@drawable/ic_person_black_24dp"
+        android:drawablePadding="8dp"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelText="Name"
+        android:imeOptions="actionNext"/>
 
-    <EditText
+    <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/user_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_marginHorizontal="8dp"
         android:inputType="phone"
-        android:hint="Enter Phone Name" />
+        android:drawableLeft="@drawable/ic_phone_black_24dp"
+        android:drawablePadding="8dp"
+        android:hint="Enter your phone number"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelText="Phone number"
+        android:imeOptions="actionNext"/>
 
-    <EditText
+    <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/user_mail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+        android:layout_marginHorizontal="8dp"
         android:inputType="textEmailAddress"
-        android:hint="Enter E-mail" />
+        android:hint="Enter your email address"
+        android:drawableLeft="@drawable/ic_email_black_24dp"
+        android:drawablePadding="8dp"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelText="Email ID"
+        android:imeOptions="actionDone"/>
 
-    <EditText
-        android:id="@+id/user_dob"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="date"
-        android:hint="Date of Birth" />
+        android:orientation="horizontal"
+        android:gravity="center">
 
-    <EditText
-        android:id="@+id/user_doa"
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/user_dob"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="8dp"
+            android:hint="Choose your birthday"
+            android:drawableLeft="@drawable/ic_cake_black_24dp"
+            android:drawablePadding="8dp"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Birthday"
+            android:focusable="false"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/button_birthday"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="4dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_today_black_24dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="date"
-        android:hint="Date of Anniversary" />
+        android:orientation="horizontal">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/user_doa"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="8dp"
+            android:hint="Enter your anniversary (optional)"
+            android:drawableLeft="@drawable/ic_people_black_24dp"
+            android:drawablePadding="8dp"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Anniversary"
+            android:focusable="false"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/button_anniversary"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_margin="4dp"
+            android:src="@drawable/ic_today_black_24dp"/>
+
+    </LinearLayout>
 
 
 </LinearLayout>

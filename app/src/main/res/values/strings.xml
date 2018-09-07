@@ -3,7 +3,7 @@
     <string name="enter_waiter_name">Enter Waiter Name</string>
     <string name="enter_table_number">Enter table number</string>
 
-    <string name="enter_phone_number">Enter phone number</string>
+    <string name="enter_phone_number">Enter your phone number</string>
     <string name="feedback">Feedback</string>
     <string name="test_resource">New feedbacks : </string>
     <string-array name="frequency_of_visit">

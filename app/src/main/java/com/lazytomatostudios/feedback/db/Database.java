@@ -11,7 +11,7 @@ import com.lazytomatostudios.feedback.db.entity.Feedback;
 import com.lazytomatostudios.feedback.db.entity.User;
 import com.lazytomatostudios.feedback.db.entity.Waiter;
 
-@android.arch.persistence.room.Database(entities = {Waiter.class, User.class, Feedback.class}, version = 9, exportSchema = false)
+@android.arch.persistence.room.Database(entities = {Waiter.class, User.class, Feedback.class}, version = 10, exportSchema = false)
 public abstract class Database extends RoomDatabase {
 
     public abstract WaiterDao waiterDao();

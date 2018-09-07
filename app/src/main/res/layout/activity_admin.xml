@@ -9,7 +9,6 @@
     tools:context=".AdminActivity"
     android:orientation="vertical"
     android:background="@drawable/gradient_lush"
-    android:padding="100dp"
     android:gravity="center_vertical">
 
     <Button
